@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TesteForm Fornecedor{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h2>TesteForm Fornecedor</h2>
+    <form method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+
+    </form>
+    <br>
+    <a href="{% url 'forn_list' %}"><button>Cancelar</button></a>
+    {% endblock %}
+</body>
+</html>

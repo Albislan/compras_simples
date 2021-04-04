@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<head>
+    <title>{% block title %}Entrada no estoque para Testes{% endblock %}</title>
+</head>
+
+<body>
+{% block content %}
+
+
+<div class="row"><div class="cols">
+<h2>Entrada no estoque para Testes</h2>
+    <form method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        {{ formset.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+
+</div></div>
+<br>
+<a href="{% url 'estoque_list' %}"><button>Voltar para tela anterior</button></a>
+{% endblock content %}
+</body>

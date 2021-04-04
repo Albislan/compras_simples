@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Lista de Fornecedores Testes{% endblock %}</title>
+
+</head>
+<body>
+    {% block content %}
+    <h2>Fornecedores</h2>
+<a href="{% url 'forn_create' %}">
+    <button type="button" class="btn btn-outline-success btn-lg" style="float: right; margin-bottom: 5px">Adicionar</button>
+</a>
+    <form>
+        <div class="form-group mb-1">
+            <input class="form-control" type="text" name="name" placeholder="Buscar por Nome...">
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    </form>
+
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nome:</th>
+            <th>observacoes:</th>
+
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for fornecedor in fornecedor_list %}
+            <tr>
+                <td><a href="{{ fornecedor.get_absolute_url }}">{{ fornecedor.nome }}</a></td>
+                 <td>{{ fornecedor.observacoes }}</td>
+
+                 <form method="post" action="{{ fornecedor.get_delete_url }}">{% csrf_token %}
+                 <td><button type="submit" class="btn btn-outline-danger">Excluir</button></td>
+                 </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include 'pagination.html' %}
+
+
+    </ul>
+</nav>
+{% endblock %}
+</body>

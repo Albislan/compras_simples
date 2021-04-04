@@ -1,0 +1,23 @@
+<h2>Lista de Testes Articles</h2>
+<a href="{% url 'article_create' %}"><button>Adicionar</button></a>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Data da Publicação:</th>
+        <th>Manchete:</th>
+        <th>Conteudo:</th>
+        <th>Reporter:</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for artigo in article_list %}
+    <tr>
+        <td></td>
+        <td>{{ artigo.headline }}</td>
+        <td>{{ artigo.content }}</td>
+        <td>{{ artigo.reporter }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>

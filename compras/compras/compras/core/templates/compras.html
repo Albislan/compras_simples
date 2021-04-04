@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TesteForm de Compras{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <div class="row"><div class="cols">
+    <form method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        {{ formset.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    </div></div>
+    <br>
+    <a href="{% url 'compras_list' %}"><button>Voltar a Tela anterior</button></a>
+    {% endblock %}
+</body>

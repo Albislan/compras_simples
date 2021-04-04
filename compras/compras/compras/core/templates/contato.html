@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TesteForm de contato de Fornecedores{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    <h2>TesteForm de contato de Fornecedores</h2>
+    <form method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    <br>
+    <a href="{% url 'cont_list' %}"><button>Cancelar</button></a>
+    {% endblock %}
+</body>

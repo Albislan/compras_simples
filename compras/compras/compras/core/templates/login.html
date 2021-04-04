@@ -1,0 +1,26 @@
+   <meta charset="UTF-8">
+    <title>Login para testes</title>
+</head>
+<body style="background:#A9F5F2">
+</br>
+    <div align="center">
+        <h1>Login</h1>
+    </br>
+        <form action="submit" method="POST">{% csrf_token %}
+            <label>Usuário</label>
+            <input type="text" name="username">
+            <label>Senha</label>
+            <input type="password" name="password">
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</br>
+</br>
+{% for message in messages %}
+    <div align="center">
+        <strong>Erro!</strong>{{ message }}
+    </div>
+{% endfor %}
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TesteForm</title>
+</head>
+<body>
+<h2>Author</h2>
+    <form method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        {{ formset1 }}
+        {{ formset2 }}
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>

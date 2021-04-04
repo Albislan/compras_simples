@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Teste de Book</h2>
+<a href="{% url 'book_create' %}"><button>Adicionar</button></a>
+<table>
+    <thead>
+    <tr>
+        <th>Nome do Livro:</th>
+        <th>Nomes dos Autores:</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for livro in book_list %}
+    <tr>
+        <td>{{ livro.name }}</td>
+        <td>{{ livro.authors }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

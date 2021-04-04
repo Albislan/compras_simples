@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<title>{% block title %}Pagina Inicial Somente para testes{% endblock %}</title>
+{% block content %}
+<h1>Pagina Inicial Somente para testes</h1>
+<a href="{% url 'forn_list' %}">Fornecedores</a>
+<br>
+<a href="{% url 'cont_list' %}">Contatos</a>
+<br>
+<a href="{% url 'prod_list' %}">Produtos</a>
+<br>
+<a href="{% url 'marca_list' %}">Marca</a>
+<br>
+<a href="{% url 'compras_list' %}">Compras</a>
+<br>
+<a href="{% url 'estoque_list' %}">Estoque</a>
+<br>
+<a href="#">Teste Article</a>
+<br>
+<a href="#">Teste Book</a>
+<br>
+<a href="#">Teste Author</a>
+<br>
+{% endblock %}

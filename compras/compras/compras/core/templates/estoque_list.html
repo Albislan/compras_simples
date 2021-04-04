@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Lista de Estoque para Testes{% endblock %}</title>
+
+</head>
+<body>
+    {% block content %}
+    <h2>Lista de Estoque para Testes</h2>
+<a href="{% url 'estoque_create' %}">
+    <button type="button" class="btn btn-outline-success btn-lg" style="float: right; margin-bottom: 5px">Adicionar</button>
+</a>
+    <form>
+        <div class="form-group mb-1">
+            <input class="form-control" type="text" name="name" placeholder="Buscar por Nome...">
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    </form>
+
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Item:</th>:</th>
+            <th>Movimento:</th>
+            <th>Data:</th>
+            <th>Funcionario:</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+            <tr>
+                <td><a href="{% url 'estoque_detail' object.pk %}">{{ object }}</a></td>
+                 <td>{{ object.movimento }}</td>
+                <td>{{ object.created }}</td>
+                <td>{{ object.funcionario }}</td>
+
+
+                <td><a href="/estoque/{{ estoq.pk }}/delete"><button type="submit" class="btn btn-outline-danger">Excluir</button></a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include 'pagination.html' %}
+    {% endblock %}
+</body>
