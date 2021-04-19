@@ -41,12 +41,14 @@ class Produto(models.Model):
     def get_delete_url(self):
         return reverse("prod_delete", kwargs={"pk": self.id})
 
+    def get_estoque_anterior(self):
+        return self.estoq
+
     def to_dict_json(self):
         return {
             'pk': self.id,
             'produto': self.nome,
             'tipo': self.tipo,
-            'marca': self.marca,
             'estoque': self.estoq,
             'preco': self.preco,
         }

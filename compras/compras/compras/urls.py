@@ -20,6 +20,7 @@ from django.contrib.auth.decorators import login_required
 import debug_toolbar
 from .core import views as v
 from .estoque import views
+from .produto import views as vi
 from .core.views import FornecedorListView, FornecedorCreateView, FornecedorUpdateView, FornecedorDeleteView, \
     ContatoCreateView, ContatoListView, ContatoUpdateView, ContatoDeleteView
 from .produto.views import ProdutoListView, ProdutoCreateView, ProdutoUpdateView, ProdutoDeleteView, \
@@ -44,6 +45,7 @@ urlpatterns = [
     path('produto/list', ProdutoListView.as_view(), name='prod_list'),
     path('produto', ProdutoCreateView.as_view(), name='prod_create'),
     path('produto/<int:pk>/', ProdutoUpdateView.as_view(), name='prod_update'),
+    path('produto/<int:pk>/json/', vi.produto_json, name='produto_json'),
     path('produto/<int:pk>/delete/', ProdutoDeleteView.as_view(), name='prod_delete'),
     path('marca/produto/list', MarcaListView.as_view(), name='marca_list'),
     path('marca/produto', MarcaCreateView.as_view(), name='marca_create'),

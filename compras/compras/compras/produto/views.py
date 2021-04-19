@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import Produto, Marca
@@ -60,6 +61,12 @@ class ProdutoDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse("prod_list")
+
+
+def produto_json(request, pk):
+    produto = Produto.objects.filter(pk=pk)
+    data = [item.to_dict_json() for item in produto]
+    return JsonResponse({'data': data})
 
 
 class MarcaListView(LoginRequiredMixin, ListView):

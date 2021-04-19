@@ -53,6 +53,11 @@ class EstoqueItens(models.Model):
     def __str__(self):
         return '{} - {} - {}'.format(self.pk, self.estoque.pk, self.produto)
 
+    def get_saldo_atual(self):
+        saldo_anterior = self.produto.estoq
+        return saldo_anterior + self.quantidade
+
+
 
 class Compras(TimeStampedModel):
     cod_compra = models.AutoField(primary_key=True)
@@ -112,6 +117,16 @@ class ComprasItens(models.Model):
 
     def __str__(self):
         return '{} - {} - {} - {}'.format(self.pk, self.compra.pk, self.produtos, self.valor)
+
+    def get_estoque_atualizado(self):
+        saldo_anterior = self.produtos.estoq
+        return saldo_anterior + self.quant
+
+    def get_total_price_produto(self):
+        return self.preco_unit * self.quant
+
+    def get_total_price_pedido(self):
+        pass
 
 
 # class EstoqueSaidaManager(models.Manager):

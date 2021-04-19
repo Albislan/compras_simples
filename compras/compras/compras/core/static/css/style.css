@@ -1,0 +1,19 @@
+.corpo {
+    margin-left: 10px;
+}
+body {
+  margin-top: 60px;
+}
+
+.ok {
+  color: green;
+}
+
+.no {
+  color: red;
+}
+
+span.required:after {
+  content: "*";
+  color: red;
+}
