@@ -11,51 +11,47 @@ MOVIMENTO = (
 )
 
 
-class Estoque(TimeStampedModel):
-    funcionario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
-    movimento = models.CharField(max_length=1, choices=MOVIMENTO, blank=True)
-
-    class Meta:
-        ordering = ('-created',)
-
-    def __str__(self):
-        return 'Código {} que {}ntrou na data de {}'.format(self.pk, self.movimento, self.created.strftime('%d-%m-%Y'))
-
-
-class EstoqueEntradaManager(models.Manager):
-
-    def get_queryset(self):
-        return super(EstoqueEntradaManager, self).get_queryset().filter(movimento='e')
-
-
-class EstoqueEntrada(Estoque):
-    objects = EstoqueEntradaManager()
-
-    class Meta:
-        proxy = True
-        verbose_name = 'estoque entrada'
-        verbose_name_plural = 'estoque entrada'
-
-
-class EstoqueItens(models.Model):
-    estoque = models.ForeignKey(
-        Estoque,
-        on_delete=models.CASCADE,
-        related_name='estoques'
-    )
-    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
-    quantidade = models.PositiveIntegerField()
-    saldo = models.PositiveIntegerField(blank=True)
-
-    class Meta:
-        ordering = ('pk',)
-
-    def __str__(self):
-        return '{} - {} - {}'.format(self.pk, self.estoque.pk, self.produto)
-
-    def get_saldo_atual(self):
-        saldo_anterior = self.produto.estoq
-        return saldo_anterior + self.quantidade
+# class Estoque(TimeStampedModel): #Criado somente para Testes#
+#     funcionario = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+#     movimento = models.CharField(max_length=1, choices=MOVIMENTO, blank=True)
+#
+#     class Meta:
+#         ordering = ('-created',)
+#
+#     def __str__(self):
+#         return 'Código {} que {}ntrou na data de {}'.format(self.pk, self.movimento, self.created.strftime('%d-%m-%Y'))
+#
+#
+# class EstoqueEntradaManager(models.Manager):
+#
+#     def get_queryset(self):
+#         return super(EstoqueEntradaManager, self).get_queryset().filter(movimento='e')
+#
+#
+# class EstoqueEntrada(Estoque):
+#     objects = EstoqueEntradaManager()
+#
+#     class Meta:
+#         proxy = True
+#         verbose_name = 'estoque entrada'
+#         verbose_name_plural = 'estoque entrada'
+#
+#
+# class EstoqueItens(models.Model):
+#     estoque = models.ForeignKey(
+#         Estoque,
+#         on_delete=models.CASCADE,
+#         related_name='estoques'
+#     )
+#     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+#     quantidade = models.PositiveIntegerField()
+#     saldo = models.PositiveIntegerField(blank=True)
+#
+#     class Meta:
+#         ordering = ('pk',)
+#
+#     def __str__(self):
+#         return '{} - {} - {}'.format(self.pk, self.estoque.pk, self.produto)
 
 
 
@@ -65,7 +61,7 @@ class Compras(TimeStampedModel):
     nf = models.PositiveIntegerField('nota fiscal', null=True, blank=True)
     forn = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING)
     movimento = models.CharField(choices=MOVIMENTO, max_length=1, blank=True)
-    valor = models.DecimalField('Valor R$:', decimal_places=2, max_digits=10)
+    valor = models.DecimalField('Valor da NF R$:', decimal_places=2, max_digits=10)
     obs = models.CharField('Observações:', max_length=200)
 
     def __str__(self):
@@ -77,10 +73,6 @@ class Compras(TimeStampedModel):
         if self.nf:
             return str(self.nf).zfill(3)
         return '---'
-
-
-    # def get_absolute_url(self):
-    #     return reverse("compra_detail", kwargs={"pk": self.cod_compra})
 
     def get_delete_url(self):
         return reverse("compra_delete", kwargs={"pk": self.cod_compra})
@@ -118,18 +110,6 @@ class ComprasItens(models.Model):
     def __str__(self):
         return '{} - {} - {} - {}'.format(self.pk, self.compra.pk, self.produtos, self.valor)
 
-    def get_estoque_atualizado(self):
-        saldo_anterior = self.produtos.estoq
-        return saldo_anterior + self.quant
-
-    def get_total_price_produto(self):
-        return self.preco_unit * self.quant
-
-    def get_total_price_pedido(self):
-        pass
-
-
-# class EstoqueSaidaManager(models.Manager):
-#
-#     def get_queryset(self):
-#         return super(EstoqueSaidaManager, self).get_queryset().filter(movimento='s')
+    # def get_estoque_atualizado(self):
+    #     saldo_anterior = self.produtos.estoq
+    #     return saldo_anterior + self.quant

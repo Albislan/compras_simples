@@ -25,8 +25,7 @@ from .core.views import FornecedorListView, FornecedorCreateView, FornecedorUpda
     ContatoCreateView, ContatoListView, ContatoUpdateView, ContatoDeleteView
 from .produto.views import ProdutoListView, ProdutoCreateView, ProdutoUpdateView, ProdutoDeleteView, \
     MarcaCreateView, MarcaListView, MarcaUpdateView, MarcaDeleteView
-from .estoque.views import EstoqueListView, EstoqueDeleteView, \
-    ComprasCreateView, ComprasListView, ComprasUpdateView, ComprasDeleteView, ComprasDetailView, EstoqueDetailView
+from .estoque.views import ComprasListView, ComprasDeleteView, ComprasDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -54,17 +53,10 @@ urlpatterns = [
     path('compras/list', ComprasListView.as_view(), name='compras_list'),
     path('compra', views.compras_create, name='compras_create'),
     path('compra/<int:pk>/', ComprasDetailView.as_view(), name='compra_detail'),
-    # path('compra/<int:pk>/', ComprasUpdateView.as_view(), name='compras_update'),
     path('compra/<int:pk>/delete/', ComprasDeleteView.as_view(), name='compras_delete'),
-    path('estoque/list', EstoqueListView.as_view(), name='estoque_list'),
-    path('estoque', views.estoque_create, name='estoque_create'),
-    path('estoque/<int:pk>/', EstoqueDetailView.as_view(), name='estoque_detail'),
-    path('estoque/<int:pk>/delete/', EstoqueDeleteView.as_view(), name='estoque_delete'),
-    # path('artigo/list', ArticleListView.as_view(), name='article_list'),
-    # path('artigo', ArticleCreateView.as_view(), name='article_create'),
-    # path('author/list', AuthorListView.as_view(), name='author_list'),
-    # path('author', AuthorCreateView.as_view(), name='author_create'),
-    # path('book/list', BookListView.as_view(), name='book_list'),
-    # path('book', BookCreateView.as_view(), name='book_create'),
+    # path('estoque/list', EstoqueListView.as_view(), name='estoque_list'),
+    # path('estoque', views.estoque_create, name='estoque_create'),
+    # path('estoque/<int:pk>/', EstoqueDetailView.as_view(), name='estoque_detail'),
+    # path('estoque/<int:pk>/delete/', EstoqueDeleteView.as_view(), name='estoque_delete'),
     path('__debug__/', include(debug_toolbar.urls)),
 ]

@@ -32,12 +32,12 @@
         <tbody>
             {% for cont in contatofornecedor_list %}
             <tr>
-                <td><a href="{{ contatos.get_absolute_url }}">{{ cont.pk }}</a></td>
+                <td><a href="{{ cont.get_absolute_url }}">{{ cont.pk }}</a></td>
                 <td>{{ cont.contato }}</td>
                 <td>{{ cont.empresa }}</td>
                 <td>{{ cont.observacoes }}</td>
 
-                 <form method="post" action="{{ contatos.get_delete_url }}">{% csrf_token %}
+                 <form method="post" action="{{ cont.get_delete_url }}">{% csrf_token %}
                  <td><button type="submit" class="btn btn-outline-danger">Excluir</button></td>
                  </form>
             </tr>

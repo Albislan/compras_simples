@@ -33,7 +33,7 @@ class Produto(models.Model):
     observacoes = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"id({self.id}) {self.nome} {self.tipo} {self.marca} ({self.estoq} no estoque)"
+        return f"id({self.id}) {self.nome} {self.tipo} {self.marca} "
 
     def get_absolute_url(self):
         return reverse("prod_update", kwargs={"pk": self.id})
@@ -56,8 +56,3 @@ class Produto(models.Model):
     class Meta:
         db_table = 'produto'
         ordering = ('nome',)
-
-
-
-
-
